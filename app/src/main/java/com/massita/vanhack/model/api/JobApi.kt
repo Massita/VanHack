@@ -17,6 +17,7 @@ interface JobApi {
     @GET("v1/job/search/full/")
     fun getJobs(@Query("MaxResultCount") maxResultCount: Int,
                 @Query("SkipCount") skipCount: Int,
+                @Query("query") searchQuery: String,
                 @Query("experiencelevels", encoded = true) experienceLevels: String,
                 @Query("countries", encoded = true) countries: String,
                 @Query("cities", encoded = true) cities: String) : Observable<JobsResponse>
