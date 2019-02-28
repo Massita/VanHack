@@ -1,6 +1,6 @@
 package com.massita.vanhack.feature.jobs.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.massita.vanhack.model.data.Job
 import com.massita.vanhack.model.data.Skills
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
+class JobAdapter(val jobList: MutableList<Job>, val itemClickListener: (Job) -> Unit) : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.job_item, viewGroup, false)
@@ -26,6 +26,9 @@ class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapte
         viewHolder.bind(job)
     }
 
+    fun add(jobs: List<Job>) {
+        jobList.addAll(jobs)
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -33,8 +36,9 @@ class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapte
             itemView.jobTitle.text = job.title
             itemView.jobLocale.text = job.city
             // TODO: Fix date
-            itemView.jobTimestamp.text = job.date.toString()
+            itemView.jobTimestamp.text = job.date
 
+            itemView.skillsChipGroup.removeAllViews()
             addItemsToChipGroup(job.mustHaveSkills)
             addItemsToChipGroup(job.niceToHaveSkills)
         }
