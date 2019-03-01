@@ -1,5 +1,7 @@
 package com.massita.vanhack.feature.jobs.adapter
 
+import android.graphics.Color
+import android.text.format.DateUtils
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -35,22 +37,29 @@ class JobAdapter(val jobList: MutableList<Job>, val itemClickListener: (Job) -> 
         fun bind(job: Job) {
             itemView.jobTitle.text = job.title
             itemView.jobLocale.text = job.city
-            // TODO: Fix date
-            itemView.jobTimestamp.text = job.date
+
+            itemView.jobTimestamp.text = DateUtils
+                .getRelativeTimeSpanString(
+                    job.date.time,
+                    System.currentTimeMillis(),
+                    DateUtils.MINUTE_IN_MILLIS)
 
             itemView.skillsChipGroup.removeAllViews()
-            addItemsToChipGroup(job.mustHaveSkills)
-            addItemsToChipGroup(job.niceToHaveSkills)
+            addItemsToChipGroup(job.mustHaveSkills, R.color.colorAccent)
+            addItemsToChipGroup(job.niceToHaveSkills, R.color.colorPrimaryDark)
         }
 
-        fun addItemsToChipGroup(skills: List<Skills>) {
-            for (skill in skills) {
-                val chip = Chip(itemView.context)
-                chip.text = skill.name
-
-                chip.isClickable = false
-                chip.isCheckable = false
-                itemView.skillsChipGroup.addView(chip)
+        fun addItemsToChipGroup(skills: List<Skills>?, colorRes: Int) {
+            skills?.let {
+                for (skill in it) {
+                    val chip = Chip(itemView.context)
+                    chip.text = skill.name
+                    chip.setTextColor(Color.WHITE)
+                    chip.setChipBackgroundColorResource(colorRes)
+                    chip.isClickable = false
+                    chip.isCheckable = false
+                    itemView.skillsChipGroup.addView(chip)
+                }
             }
         }
     }

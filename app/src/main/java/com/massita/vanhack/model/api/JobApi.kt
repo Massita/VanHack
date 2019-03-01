@@ -1,7 +1,9 @@
 package com.massita.vanhack.model.api
 
 import android.util.Log
+import com.google.gson.GsonBuilder
 import com.massita.vanhack.model.data.JobsResponse
+import com.massita.vanhack.utils.DateTypeDeserializer
 import io.reactivex.Observable
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -11,6 +13,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.*
 
 interface JobApi {
 
@@ -42,12 +45,16 @@ interface JobApi {
                 .addInterceptor(logger)
                 .build()
 
+            val gson = GsonBuilder()
+                .registerTypeAdapter(Date::class.java, DateTypeDeserializer())
+                .create()
+
             // Criação do client retrofit, utilizando URL base, client okhttp criado anteriormente
             // conversor de json para objeto, adaptador de chamadas para uso do RXJava
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(JobApi::class.java)

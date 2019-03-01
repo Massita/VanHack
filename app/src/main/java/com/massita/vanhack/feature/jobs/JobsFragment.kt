@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.massita.vanhack.R
 import com.massita.vanhack.feature.jobs.adapter.JobAdapter
 import com.massita.vanhack.model.api.JobApi
@@ -52,7 +53,9 @@ class JobsFragment : Fragment(), JobsContract.View {
             }
         }
 
+        val dividerItemDecoration = DividerItemDecoration(context, viewManager.orientation)
         jobsRecyclerView.apply {
+            addItemDecoration(dividerItemDecoration)
             layoutManager = viewManager
             setHasFixedSize(true)
             adapter = viewAdapter

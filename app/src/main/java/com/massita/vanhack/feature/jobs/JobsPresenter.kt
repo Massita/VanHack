@@ -34,8 +34,6 @@ class JobsPresenter(var view: JobsContract.View?, var jobApi: JobApi?) : JobsCon
     }
 
     private fun onLoadError(throwable: Throwable?) {
-        var a = 1
-        var b = a+1
         Log.d("API", throwable.toString())
         // TODO: Show Error
     }
@@ -43,7 +41,7 @@ class JobsPresenter(var view: JobsContract.View?, var jobApi: JobApi?) : JobsCon
     private fun onLoadPage(jobsResponse: JobsResponse?) {
         jobsResponse?.let {
             view?.addJobs(it.searchResult.jobs)
-            currentItemCount += it.searchResult.totalQuery
+            currentItemCount += it.searchResult.totalCount
         }
     }
 

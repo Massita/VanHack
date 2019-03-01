@@ -10,7 +10,7 @@ data class Job(
     @SerializedName("company") var company: String,
     @SerializedName("city") var city: String,
     @SerializedName("country") var country: String,
-    @SerializedName("postDate") var date: String,
+    @SerializedName("postDate") var date: Date,
     @SerializedName("mustHaveSkills") var mustHaveSkills: List<Skills>,
     @SerializedName("niceToHaveSkills") var niceToHaveSkills: List<Skills>,
     @SerializedName("jobType") var jobType: String,
