@@ -2,4 +2,6 @@
     <string name="app_name">VanHack</string>
 
     <string name="fragment_jobs_title">Jobs</string>
+    <string name="fragment_account_title">Account</string>
+    <string name="fragment_pipeline_title">Pipeline</string>
 </resources>

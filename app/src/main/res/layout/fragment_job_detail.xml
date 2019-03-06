@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/jobTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/JobTitle"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Software Developer"/>
+
+    <TextView
+        android:id="@+id/jobLocale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawableStart="@drawable/ic_location"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        style="@style/Caption"
+        app:layout_constraintTop_toBottomOf="@id/jobTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/jobType"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        tools:text="Vancouver"/>
+
+    <TextView
+        android:id="@+id/jobType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_job_type"
+        android:drawableStart="@drawable/ic_job_type"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        style="@style/Caption"
+        app:layout_constraintTop_toBottomOf="@id/jobTitle"
+        app:layout_constraintLeft_toRightOf="@id/jobLocale"
+        app:layout_constraintRight_toLeftOf="@id/salaryRange"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        tools:text="Full time"/>
+
+    <TextView
+        android:id="@+id/salaryRange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_monetization"
+        android:drawableStart="@drawable/ic_monetization"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        style="@style/Caption"
+        app:layout_constraintTop_toBottomOf="@id/jobTitle"
+        app:layout_constraintLeft_toRightOf="@id/jobType"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        tools:text="Not informed"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="jobLocale, jobType, salaryRange"/>
+
+    <TextView
+        android:id="@+id/description_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/SectionTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toBottomOf="@id/barrier"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/jobDescription"
+        tools:text="Description"/>
+
+    <TextView
+        android:id="@+id/jobDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        style="@style/RegularText"
+        app:layout_constraintTop_toBottomOf="@id/description_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/must_have_skills_title"
+        tools:text="Proven track record of developing and maintaining  cross platform / real-time audio engine
+It is essential that you take pride in documentation of work, so that is is meaningful to third parties in the future, and quick to consume. The work must be reproducible from your documentation.
+In depth C/C++ knowledge.
+Advanced/Fluent in English."/>
+
+    <TextView
+        android:id="@+id/must_have_skills_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/SectionTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintTop_toBottomOf="@id/jobDescription"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mustHaveSkills"
+        tools:text="Must Have Skills"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/mustHaveSkills"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@id/must_have_skills_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nice_to_have_skills_title"/>
+
+    <TextView
+        android:id="@+id/nice_to_have_skills_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/SectionTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintTop_toBottomOf="@id/mustHaveSkills"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/niceToHaveSkills"
+        tools:text="Nice to Have Skills"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/niceToHaveSkills"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/nice_to_have_skills_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
