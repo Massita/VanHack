@@ -4,4 +4,6 @@
     <string name="fragment_jobs_title">Jobs</string>
     <string name="fragment_account_title">Account</string>
     <string name="fragment_pipeline_title">Pipeline</string>
+
+    <string name="salary_not_informed">Not Informed</string>
 </resources>
