@@ -6,17 +6,17 @@ interface JobDetailContract {
 
     interface View {
 
-        fun setJobTitle(title: String)
+        fun setJobTitle(title: String?)
 
-        fun setJobLocation(location: String)
+        fun setJobLocation(location: String?)
 
-        fun setJobType(type: String)
+        fun setJobType(type: String?)
 
-        fun setJobSalary(salary: String)
+        fun setJobSalary(salary: String?)
 
         fun setSalaryNotInformed()
 
-        fun setJobDescription(description: String)
+        fun setJobDescription(description: String?)
 
         fun setMustHaveSkills(skills: List<Skills>)
 

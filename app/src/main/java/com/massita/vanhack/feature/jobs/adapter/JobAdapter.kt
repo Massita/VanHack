@@ -2,17 +2,19 @@ package com.massita.vanhack.feature.jobs.adapter
 
 import android.graphics.Color
 import android.text.format.DateUtils
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.massita.vanhack.R
+import com.massita.vanhack.feature.jobs.JobsFragmentDirections
 import com.massita.vanhack.model.data.Job
 import com.massita.vanhack.model.data.Skills
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class JobAdapter(val jobList: MutableList<Job>, val itemClickListener: (Job) -> Unit) : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
+class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.job_item, viewGroup, false)
@@ -47,6 +49,12 @@ class JobAdapter(val jobList: MutableList<Job>, val itemClickListener: (Job) -> 
             itemView.skillsChipGroup.removeAllViews()
             addItemsToChipGroup(job.mustHaveSkills, R.color.colorAccent)
             addItemsToChipGroup(job.niceToHaveSkills, R.color.colorPrimaryDark)
+
+            val action = JobsFragmentDirections.actionJobsFragmentToJobDetailFragment()
+            action.job = job
+            itemView.setOnClickListener (
+                Navigation.createNavigateOnClickListener(R.id.action_jobsFragment_to_jobDetailFragment, action.arguments)
+            )
         }
 
         fun addItemsToChipGroup(skills: List<Skills>?, colorRes: Int) {

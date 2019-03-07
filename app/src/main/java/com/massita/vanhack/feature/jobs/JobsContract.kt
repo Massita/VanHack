@@ -18,8 +18,6 @@ interface JobsContract {
 
         fun resetScrollListenerStatus()
 
-        fun openJobDetails(job: Job)
-
     }
 
     interface Presenter {
@@ -29,8 +27,6 @@ interface JobsContract {
         fun loadNextJobs()
 
         fun destroy()
-
-        fun onItemClick(job: Job)
 
     }
 

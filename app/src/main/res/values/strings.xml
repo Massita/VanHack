@@ -6,4 +6,7 @@
     <string name="fragment_pipeline_title">Pipeline</string>
 
     <string name="salary_not_informed">Not Informed</string>
+    <string name="description">Description</string>
+    <string name="must_have_skills">Must Have Skills</string>
+    <string name="nice_to_have_skills">Nice to Have Skills</string>
 </resources>

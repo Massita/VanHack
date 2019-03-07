@@ -46,7 +46,7 @@ class JobsFragment : Fragment(), JobsContract.View {
 
     override fun prepareRecyclerView() {
         viewManager = LinearLayoutManager(context)
-        viewAdapter = JobAdapter(ArrayList(), { clickedItem -> mPresenter.onItemClick(clickedItem) })
+        viewAdapter = JobAdapter(ArrayList())
         endlessScrollListener = object: EndlessScrollListener(viewManager) {
             override fun onLoadMore() {
                 mPresenter.loadNextJobs()
@@ -83,9 +83,5 @@ class JobsFragment : Fragment(), JobsContract.View {
 
     override fun resetScrollListenerStatus() {
         endlessScrollListener.resetStatus()
-    }
-
-    override fun openJobDetails(job: Job) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

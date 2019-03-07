@@ -9,25 +9,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.massita.vanhack.R
-import com.massita.vanhack.model.data.Job
 import com.massita.vanhack.model.data.Skills
 import kotlinx.android.synthetic.main.fragment_job_detail.*
 
 class JobDetailFragment : Fragment(), JobDetailContract.View {
-
-    companion object {
-        const val ARGUMENT_JOB = "ARGUMENT_JOB"
-
-        fun newInstance(job: Job) : Fragment {
-            val fragment = JobDetailFragment()
-
-            val bundle = Bundle()
-            bundle.putSerializable(ARGUMENT_JOB, job)
-            fragment.arguments = bundle
-
-            return fragment
-        }
-    }
 
     private lateinit var mPresenter: JobDetailContract.Presenter
 
@@ -37,25 +22,27 @@ class JobDetailFragment : Fragment(), JobDetailContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mPresenter = JobDetailPresenter(this, arguments?.getSerializable(ARGUMENT_JOB) as Job?)
-        mPresenter.start()
+        arguments?.let {
+            val safeArgs = JobDetailFragmentArgs.fromBundle(it)
+            mPresenter = JobDetailPresenter(this, safeArgs.job)
+            mPresenter.start()
+        }
     }
 
     // Contract
-    override fun setJobTitle(title: String) {
+    override fun setJobTitle(title: String?) {
         jobTitle.text = title
     }
 
-    override fun setJobLocation(location: String) {
+    override fun setJobLocation(location: String?) {
         jobLocale.text = location
     }
 
-    override fun setJobType(type: String) {
+    override fun setJobType(type: String?) {
         jobType.text = type
     }
 
-    override fun setJobSalary(salary: String) {
+    override fun setJobSalary(salary: String?) {
         salaryRange.text = salary
     }
 
@@ -63,7 +50,7 @@ class JobDetailFragment : Fragment(), JobDetailContract.View {
         salaryRange.text = getString(R.string.salary_not_informed)
     }
 
-    override fun setJobDescription(description: String) {
+    override fun setJobDescription(description: String?) {
         jobDescription.text = description
     }
 

@@ -2,7 +2,6 @@ package com.massita.vanhack.feature.jobs
 
 import android.util.Log
 import com.massita.vanhack.model.api.JobApi
-import com.massita.vanhack.model.data.Job
 import com.massita.vanhack.model.data.JobsResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -49,9 +48,5 @@ class JobsPresenter(var view: JobsContract.View?, var jobApi: JobApi?) : JobsCon
         compositeDisposable.dispose()
         jobApi = null
         view = null
-    }
-
-    override fun onItemClick(job: Job) {
-        // Do nothing for now
     }
 }

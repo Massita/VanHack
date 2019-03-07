@@ -8,5 +8,21 @@
         android:id="@+id/jobsFragment"
         android:name="com.massita.vanhack.feature.jobs.JobsFragment"
         android:label="fragment_jobs"
-        tools:layout="@layout/fragment_jobs" />
+        tools:layout="@layout/fragment_jobs" >
+        <action
+            android:id="@+id/action_jobsFragment_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment"
+            app:popUpTo="@id/jobsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobDetailFragment"
+        android:name="com.massita.vanhack.feature.jobs.JobDetailFragment"
+        android:label="JobDetailFragment"
+        tools:layout="@layout/fragment_job_detail">
+        <argument
+            android:name="job"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="com.massita.vanhack.model.data.Job" />
+    </fragment>
 </navigation>
