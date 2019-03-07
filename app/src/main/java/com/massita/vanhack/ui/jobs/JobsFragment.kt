@@ -1,25 +1,28 @@
-package com.massita.vanhack.feature.jobs
+package com.massita.vanhack.ui.jobs
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.massita.vanhack.R
-import com.massita.vanhack.feature.jobs.adapter.JobAdapter
-import com.massita.vanhack.model.api.JobApi
-import com.massita.vanhack.model.data.Job
-import com.massita.vanhack.utils.EndlessScrollListener
+import com.massita.vanhack.presentation.api.JobApi
+import com.massita.vanhack.presentation.data.Job
+import com.massita.vanhack.presentation.data.JobsViewModel
+import com.massita.vanhack.ui.jobs.adapter.JobAdapter
 import kotlinx.android.synthetic.main.fragment_jobs.*
 
 
 class JobsFragment : Fragment(), JobsContract.View {
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var viewAdapter: JobAdapter
-    private lateinit var endlessScrollListener: EndlessScrollListener
+
+    private lateinit var jobsViewModel: JobsViewModel
 
     private lateinit var mPresenter : JobsContract.Presenter
 
@@ -35,6 +38,9 @@ class JobsFragment : Fragment(), JobsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        jobsViewModel = ViewModelProviders.of(this)
+            .get(JobsViewModel::class.java)
+
         mPresenter = JobsPresenter(this, JobApi.create())
         mPresenter.start()
     }
@@ -46,12 +52,8 @@ class JobsFragment : Fragment(), JobsContract.View {
 
     override fun prepareRecyclerView() {
         viewManager = LinearLayoutManager(context)
-        viewAdapter = JobAdapter(ArrayList())
-        endlessScrollListener = object: EndlessScrollListener(viewManager) {
-            override fun onLoadMore() {
-                mPresenter.loadNextJobs()
-            }
-        }
+        viewAdapter = JobAdapter()
+
 
         val dividerItemDecoration = DividerItemDecoration(context, viewManager.orientation)
         jobsRecyclerView.apply {
@@ -59,13 +61,13 @@ class JobsFragment : Fragment(), JobsContract.View {
             layoutManager = viewManager
             setHasFixedSize(true)
             adapter = viewAdapter
-            addOnScrollListener(endlessScrollListener)
         }
+
+        jobsViewModel.jobsList.observe(this, Observer { viewAdapter.submitList(it) })
 
     }
 
     override fun addJobs(jobs: List<Job>) {
-        viewAdapter.add(jobs)
         viewAdapter.notifyDataSetChanged()
     }
 
@@ -79,9 +81,5 @@ class JobsFragment : Fragment(), JobsContract.View {
 
     override fun showErrorMessage() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun resetScrollListenerStatus() {
-        endlessScrollListener.resetStatus()
     }
 }

@@ -1,4 +1,4 @@
-package com.massita.vanhack.model.data
+package com.massita.vanhack.presentation.data
 
 import com.google.gson.annotations.SerializedName
 

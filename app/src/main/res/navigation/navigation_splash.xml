@@ -5,7 +5,7 @@
     android:id="@+id/navigation_splash"
     app:startDestination="@id/splashFragment">
     <fragment android:id="@+id/splashFragment"
-        android:name="com.massita.vanhack.feature.splash.SplashFragment"
+        android:name="com.massita.vanhack.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -14,7 +14,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.massita.vanhack.feature.MainActivity"
+        android:name="com.massita.vanhack.ui.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 

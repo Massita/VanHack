@@ -1,4 +1,4 @@
-package com.massita.vanhack.feature
+package com.massita.vanhack.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

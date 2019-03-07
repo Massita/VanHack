@@ -1,4 +1,4 @@
-package com.massita.vanhack.feature.splash
+package com.massita.vanhack.ui.splash
 
 
 import android.os.Bundle

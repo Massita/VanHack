@@ -1,15 +1,14 @@
-package com.massita.vanhack.model.api
+package com.massita.vanhack.presentation.api
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-import com.massita.vanhack.model.data.JobsResponse
+import com.massita.vanhack.presentation.data.JobsResponse
 import com.massita.vanhack.utils.DateTypeDeserializer
-import io.reactivex.Observable
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -23,7 +22,7 @@ interface JobApi {
                 @Query("query") searchQuery: String?,
                 @Query("experiencelevels", encoded = true) experienceLevels: String?,
                 @Query("countries", encoded = true) countries: String?,
-                @Query("cities", encoded = true) cities: String?) : Observable<JobsResponse>
+                @Query("cities", encoded = true) cities: String?) : Call<JobsResponse>
 
     // Request URL: https://app.vanhack.com/JobByUser/ApplyNow?idJob=1348
 //Request Method: POST
@@ -55,7 +54,6 @@ interface JobApi {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(JobApi::class.java)
         }

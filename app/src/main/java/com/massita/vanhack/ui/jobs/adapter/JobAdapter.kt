@@ -1,4 +1,4 @@
-package com.massita.vanhack.feature.jobs.adapter
+package com.massita.vanhack.ui.jobs.adapter
 
 import android.graphics.Color
 import android.text.format.DateUtils
@@ -6,32 +6,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.massita.vanhack.R
-import com.massita.vanhack.feature.jobs.JobsFragmentDirections
-import com.massita.vanhack.model.data.Job
-import com.massita.vanhack.model.data.Skills
+import com.massita.vanhack.ui.jobs.JobsFragmentDirections
+import com.massita.vanhack.presentation.data.Job
+import com.massita.vanhack.presentation.data.Skills
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapter.ViewHolder>() {
+class JobAdapter : PagedListAdapter<Job, JobAdapter.ViewHolder>(diffCallback) {
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Job>() {
+            override fun areItemsTheSame(oldItem: Job, newItem: Job): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Job, newItem: Job): Boolean =
+                    oldItem == newItem
+
+        }
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.job_item, viewGroup, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return jobList.size
-    }
-
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val job = jobList[position]
-        viewHolder.bind(job)
-    }
-
-    fun add(jobs: List<Job>) {
-        jobList.addAll(jobs)
+        val job = getItem(position)
+        job?.let {
+            viewHolder.bind(it)
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,7 +58,7 @@ class JobAdapter(val jobList: MutableList<Job>) : RecyclerView.Adapter<JobAdapte
             addItemsToChipGroup(job.niceToHaveSkills, R.color.colorPrimaryDark)
 
             val action = JobsFragmentDirections.actionJobsFragmentToJobDetailFragment()
-            action.job = job
+            action.jobItem = job
             itemView.setOnClickListener (
                 Navigation.createNavigateOnClickListener(R.id.action_jobsFragment_to_jobDetailFragment, action.arguments)
             )

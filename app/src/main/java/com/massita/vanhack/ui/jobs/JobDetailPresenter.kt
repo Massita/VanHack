@@ -1,6 +1,6 @@
-package com.massita.vanhack.feature.jobs
+package com.massita.vanhack.ui.jobs
 
-import com.massita.vanhack.model.data.Job
+import com.massita.vanhack.presentation.data.Job
 
 class JobDetailPresenter(var mView: JobDetailContract.View, var mJob: Job?) : JobDetailContract.Presenter {
 

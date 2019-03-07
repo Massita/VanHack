@@ -1,6 +1,6 @@
-package com.massita.vanhack.feature.jobs
+package com.massita.vanhack.ui.jobs
 
-import com.massita.vanhack.model.data.Job
+import com.massita.vanhack.presentation.data.Job
 
 interface JobsContract {
 
@@ -15,8 +15,6 @@ interface JobsContract {
         fun hideLoading()
 
         fun showErrorMessage()
-
-        fun resetScrollListenerStatus()
 
     }
 

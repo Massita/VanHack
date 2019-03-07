@@ -6,7 +6,7 @@
     app:startDestination="@id/jobsFragment">
     <fragment
         android:id="@+id/jobsFragment"
-        android:name="com.massita.vanhack.feature.jobs.JobsFragment"
+        android:name="com.massita.vanhack.ui.jobs.JobsFragment"
         android:label="fragment_jobs"
         tools:layout="@layout/fragment_jobs" >
         <action
@@ -16,13 +16,13 @@
     </fragment>
     <fragment
         android:id="@+id/jobDetailFragment"
-        android:name="com.massita.vanhack.feature.jobs.JobDetailFragment"
+        android:name="com.massita.vanhack.ui.jobs.JobDetailFragment"
         android:label="JobDetailFragment"
         tools:layout="@layout/fragment_job_detail">
         <argument
-            android:name="job"
+            android:name="jobItem"
             android:defaultValue="@null"
             app:nullable="true"
-            app:argType="com.massita.vanhack.model.data.Job" />
+            app:argType="com.massita.vanhack.presentation.data.Job" />
     </fragment>
 </navigation>

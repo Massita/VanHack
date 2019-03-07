@@ -1,4 +1,4 @@
-package com.massita.vanhack.feature.jobs
+package com.massita.vanhack.ui.jobs
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.massita.vanhack.R
-import com.massita.vanhack.model.data.Skills
+import com.massita.vanhack.presentation.data.Skills
 import kotlinx.android.synthetic.main.fragment_job_detail.*
 
 class JobDetailFragment : Fragment(), JobDetailContract.View {
@@ -24,7 +24,7 @@ class JobDetailFragment : Fragment(), JobDetailContract.View {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val safeArgs = JobDetailFragmentArgs.fromBundle(it)
-            mPresenter = JobDetailPresenter(this, safeArgs.job)
+            mPresenter = JobDetailPresenter(this, safeArgs.jobItem)
             mPresenter.start()
         }
     }

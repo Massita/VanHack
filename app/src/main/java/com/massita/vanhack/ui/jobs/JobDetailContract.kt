@@ -1,6 +1,6 @@
-package com.massita.vanhack.feature.jobs
+package com.massita.vanhack.ui.jobs
 
-import com.massita.vanhack.model.data.Skills
+import com.massita.vanhack.presentation.data.Skills
 
 interface JobDetailContract {
 
