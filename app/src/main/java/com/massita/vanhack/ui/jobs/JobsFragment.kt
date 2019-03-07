@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.massita.vanhack.R
-import com.massita.vanhack.presentation.data.JobsViewModel
+import com.massita.vanhack.viewmodel.JobsViewModel
 import com.massita.vanhack.ui.jobs.adapter.JobAdapter
 import kotlinx.android.synthetic.main.fragment_jobs.*
 

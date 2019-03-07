@@ -1,8 +1,8 @@
-package com.massita.vanhack.presentation.api
+package com.massita.vanhack.api
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-import com.massita.vanhack.presentation.data.JobsResponse
+import com.massita.vanhack.data.JobsResponse
 import com.massita.vanhack.utils.DateTypeDeserializer
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient

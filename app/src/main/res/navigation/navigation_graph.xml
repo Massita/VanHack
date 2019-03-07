@@ -23,6 +23,6 @@
             android:name="jobItem"
             android:defaultValue="@null"
             app:nullable="true"
-            app:argType="com.massita.vanhack.presentation.data.Job" />
+            app:argType="com.massita.vanhack.data.Job" />
     </fragment>
 </navigation>

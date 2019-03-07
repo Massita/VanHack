@@ -1,7 +1,7 @@
-package com.massita.vanhack.presentation.data
+package com.massita.vanhack.data
 
 import androidx.paging.ItemKeyedDataSource
-import com.massita.vanhack.presentation.api.JobApi
+import com.massita.vanhack.api.JobApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

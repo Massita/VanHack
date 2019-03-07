@@ -1,4 +1,4 @@
-package com.massita.vanhack.presentation.data
+package com.massita.vanhack.data
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource

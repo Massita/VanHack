@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.massita.vanhack.R
 import com.massita.vanhack.ui.jobs.JobsFragmentDirections
-import com.massita.vanhack.presentation.data.Job
-import com.massita.vanhack.presentation.data.Skills
+import com.massita.vanhack.data.Job
+import com.massita.vanhack.data.Skills
 import kotlinx.android.synthetic.main.job_item.view.*
 
 class JobAdapter : PagedListAdapter<Job, JobAdapter.ViewHolder>(diffCallback) {

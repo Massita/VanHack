@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.massita.vanhack.R
-import com.massita.vanhack.presentation.data.Skills
+import com.massita.vanhack.data.Skills
 import kotlinx.android.synthetic.main.fragment_job_detail.*
 
 class JobDetailFragment : Fragment(), JobDetailContract.View {
