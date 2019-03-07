@@ -11,20 +11,17 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.massita.vanhack.R
-import com.massita.vanhack.presentation.api.JobApi
-import com.massita.vanhack.presentation.data.Job
 import com.massita.vanhack.presentation.data.JobsViewModel
 import com.massita.vanhack.ui.jobs.adapter.JobAdapter
 import kotlinx.android.synthetic.main.fragment_jobs.*
 
 
-class JobsFragment : Fragment(), JobsContract.View {
+class JobsFragment : Fragment() {
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var viewAdapter: JobAdapter
 
     private lateinit var jobsViewModel: JobsViewModel
 
-    private lateinit var mPresenter : JobsContract.Presenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +37,10 @@ class JobsFragment : Fragment(), JobsContract.View {
 
         jobsViewModel = ViewModelProviders.of(this)
             .get(JobsViewModel::class.java)
-
-        mPresenter = JobsPresenter(this, JobApi.create())
-        mPresenter.start()
+        prepareRecyclerView()
     }
 
-    override fun onDestroyView() {
-        mPresenter.destroy()
-        super.onDestroyView()
-    }
-
-    override fun prepareRecyclerView() {
+    fun prepareRecyclerView() {
         viewManager = LinearLayoutManager(context)
         viewAdapter = JobAdapter()
 
@@ -67,19 +57,15 @@ class JobsFragment : Fragment(), JobsContract.View {
 
     }
 
-    override fun addJobs(jobs: List<Job>) {
-        viewAdapter.notifyDataSetChanged()
-    }
-
-    override fun showLoading() {
+    fun showLoading() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun hideLoading() {
+    fun hideLoading() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showErrorMessage() {
+    fun showErrorMessage() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
